@@ -1,0 +1,15 @@
+<h2>Alumnos</h2>
+
+@for (alumno of listaAlumnos; track alumno.name) {
+    <ul [style.background-color]="alumno.isApproved ? 'green' : 'red'">
+        <li>Nombre: {{alumno.name}}</li>
+        <li>Apellido: {{alumno.lastName}}</li>
+        <li [ngClass]="alumno.note >= 11 ? 'approved' : 'notApproved'">Nota: {{alumno.note}}</li>
+        @if (alumno.isApproved) {
+            <li>{{"Aprobado" | uppercase}}</li>
+        } @else {
+            <li>{{"Desaprobado" | uppercase}}</li>
+        }
+    </ul>
+}
+

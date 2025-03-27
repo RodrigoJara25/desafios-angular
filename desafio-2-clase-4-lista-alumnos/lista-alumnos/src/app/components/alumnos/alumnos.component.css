@@ -1,0 +1,9 @@
+.approved {
+    color: lightgreen;
+    font-weight: bold;
+}
+
+.notApproved {
+    color: lightcoral;
+    font-weight: bolder;
+}
