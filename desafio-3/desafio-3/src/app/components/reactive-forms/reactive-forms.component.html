@@ -4,14 +4,39 @@
     <div class="form-group">
         <label for="name">Nombre: </label>
         <input type="text" formControlName="name" class="form-control" id="name">
+        <div *ngIf="isNameInvalid">
+            <div *ngIf="controlName?.hasError('required')">
+                <small class="text-danger">El nombre es requerido</small>
+            </div>
+            <div *ngIf="controlName?.hasError('noCoderAllowed')">
+                <small class="text-danger">
+                    El nombre no puede incluir "coder"
+                </small>
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="email">Email: </label>
         <input type="text" formControlName="email" class="form-control" id="email">
+        <div *ngIf="isEmailInvalid">
+            <div *ngIf="controlEmail?.hasError('required')">
+                <small class="text-danger">El email es requerido</small>
+            </div>
+            <div *ngIf="controlEmail?.hasError('email')">
+                <small class="text-danger">
+                    El formato del email es incorrecto
+                </small>
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="age">Edad: </label>
         <input type="number" formControlName="age" class="form-control" id="age">
+        <div *ngIf="isAgeInvalid">
+            <div *ngIf="controlAge?.hasError('required')">
+                <small class="text-danger">La edad es requerida</small>
+            </div>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary mt-2">Enviar</button>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { noCoderAllowed } from '../../utils/custom-validator';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -11,7 +12,7 @@ export class ReactiveFormsComponent {
   public formulario: FormGroup;
   constructor(private fb: FormBuilder) {
     this.formulario = this.fb.group({
-      name: ['', [Validators.minLength(3), Validators.required]],
+      name: ['', [Validators.required, noCoderAllowed]],
       email: ['', [Validators.email, Validators.required]],
       age: ['', [Validators.required]]
     })
@@ -25,11 +26,23 @@ export class ReactiveFormsComponent {
     return this.formulario.get('name');
   }
 
+  get isNameInvalid() {
+    return this.controlName?.touched && this.controlName?.invalid;
+  }
+
   get controlEmail() {
     return this.formulario.get('email');
   }
 
+  get isEmailInvalid() {
+    return this.controlEmail?.dirty && this.controlEmail?.invalid;
+  }
+
   get controlAge() {
     return this.formulario.get('age');
+  }
+
+  get isAgeInvalid() {
+    return this.controlAge?.touched && this.controlAge.invalid; 
   }
 }
